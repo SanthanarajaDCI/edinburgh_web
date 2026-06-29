@@ -69,36 +69,36 @@ export default function SettingsPage() {
 
 function SettingsSection({ title, icon: Icon, items }: { title: string, icon: any, items: any[] }) {
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-[var(--border-light)] overflow-hidden">
-      <div className="px-5 py-4 flex items-center gap-3">
-        <Icon className="w-5 h-5 text-[var(--primary)]" />
-        <h2 className="text-base font-bold text-[var(--primary)]">{title}</h2>
+    <div className="bg-white rounded-3xl shadow-sm border border-[var(--border-light)] overflow-hidden transition-default hover:shadow-md">
+      <div className="px-6 py-5 flex items-center gap-4 bg-[var(--primary-light)]/50 border-b border-[var(--border-light)]">
+        <Icon className="w-5 h-5 text-[var(--accent)]" />
+        <h2 className="text-base font-bold text-[var(--primary)] tracking-tight">{title}</h2>
       </div>
       <div className="flex flex-col">
         {items.map((item, index) => (
           <div key={index} className="flex flex-col">
             <div 
-              className="px-5 py-3 flex items-center justify-between cursor-pointer hover:bg-gray-50 transition-colors"
+              className="px-6 py-4 flex items-center justify-between cursor-pointer hover:bg-gray-50 transition-colors"
               onClick={item.onClick}
             >
-              <div className="flex flex-col">
-                <span className={`text-[15px] font-medium ${item.isDestructive ? 'text-red-500' : 'text-[var(--text-primary)]'}`}>
+              <div className="flex flex-col gap-1">
+                <span className={`text-[15px] font-bold ${item.isDestructive ? 'text-red-500' : 'text-[var(--text-primary)]'}`}>
                   {item.title}
                 </span>
                 {item.subtitle && (
-                  <span className="text-sm text-[var(--text-secondary)]">{item.subtitle}</span>
+                  <span className="text-sm font-medium text-[var(--text-secondary)]">{item.subtitle}</span>
                 )}
               </div>
               {item.hasSwitch ? (
-                <div className={`w-10 h-6 rounded-full flex items-center px-1 transition-colors ${item.initialValue ? 'bg-[var(--primary)]' : 'bg-gray-300'}`}>
-                  <div className={`w-4 h-4 bg-white rounded-full transition-transform ${item.initialValue ? 'translate-x-4' : 'translate-x-0'}`} />
+                <div className={`w-12 h-7 rounded-full flex items-center px-1 transition-colors ${item.initialValue ? 'bg-[var(--accent)]' : 'bg-gray-300'}`}>
+                  <div className={`w-5 h-5 bg-white rounded-full transition-transform ${item.initialValue ? 'translate-x-5' : 'translate-x-0'} shadow-sm`} />
                 </div>
               ) : (
                 <ChevronRight className="w-5 h-5 text-[var(--text-secondary)]/50" />
               )}
             </div>
             {index < items.length - 1 && (
-              <div className="h-px bg-[var(--border-light)] ml-5 mr-5" />
+              <div className="h-px bg-[var(--border-light)] ml-6 mr-6" />
             )}
           </div>
         ))}

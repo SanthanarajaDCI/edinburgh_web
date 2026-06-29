@@ -1,31 +1,35 @@
 import { cn } from "@/lib/utils";
-import { Star } from "lucide-react";
+import { Star, Sparkles, Zap } from "lucide-react";
 
 interface BadgeProps {
-  variant?: "gold" | "count" | "status";
+  variant?: "primary" | "accent" | "exclusive" | "trending" | "count" | "status";
   children: React.ReactNode;
   className?: string;
+  icon?: boolean;
 }
 
 export default function Badge({
-  variant = "gold",
+  variant = "primary",
   children,
   className,
+  icon = false,
 }: BadgeProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1 text-xs font-bold rounded-full px-2.5 py-1",
-        variant === "gold" &&
-          "bg-amber-50 text-amber-700 border border-amber-300",
-        variant === "count" &&
-          "bg-[var(--accent)] text-white min-w-[20px] justify-center",
-        variant === "status" &&
-          "bg-green-50 text-green-700 border border-green-300",
+        "inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-bold rounded-full px-3 py-1 uppercase tracking-wider",
+        variant === "primary" && "bg-[var(--primary)] text-white",
+        variant === "accent" && "bg-[var(--accent)] text-white",
+        variant === "exclusive" && "bg-red-500 text-white",
+        variant === "trending" && "bg-purple-500 text-white",
+        variant === "count" && "bg-[var(--accent)] text-white min-w-[20px] justify-center px-1.5",
+        variant === "status" && "bg-green-100 text-green-700",
         className
       )}
     >
-      {variant === "gold" && <Star className="w-3 h-3 fill-amber-400 text-amber-400" />}
+      {icon && variant === "primary" && <Star className="w-3 h-3" />}
+      {icon && variant === "trending" && <Sparkles className="w-3 h-3" />}
+      {icon && variant === "exclusive" && <Zap className="w-3 h-3" />}
       {children}
     </span>
   );

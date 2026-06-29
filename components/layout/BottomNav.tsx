@@ -45,7 +45,7 @@ export default function BottomNav() {
               <Icon
                 className={cn(
                   "w-5 h-5 transition-default",
-                  isActive ? "text-white" : "text-[var(--accent)]/50"
+                  isActive ? "text-white" : "text-white/40"
                 )}
                 strokeWidth={isActive ? 2.5 : 1.5}
               />
@@ -54,7 +54,7 @@ export default function BottomNav() {
                   "text-[10px] transition-default",
                   isActive
                     ? "text-white font-bold"
-                    : "text-[var(--accent)]/50"
+                    : "text-white/40"
                 )}
               >
                 {item.label}

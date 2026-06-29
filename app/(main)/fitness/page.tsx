@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Settings, Footprints, Droplets, Moon, Heart, Utensils, Dumbbell, Scale, Activity, ArrowUp, ArrowDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import FilterChips from "@/components/ui/FilterChips";
@@ -33,6 +33,14 @@ const recommended = [
 
 export default function FitnessDashboardPage() {
   const [selectedFilter, setSelectedFilter] = useState("My Plan");
+  const [dashOffset, setDashOffset] = useState(226);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDashOffset(56.5);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="max-w-[1280px] mx-auto w-full pb-20 md:pb-10 min-h-screen bg-[var(--background)]">
@@ -62,9 +70,9 @@ export default function FitnessDashboardPage() {
         </h2>
         <div className="bg-white rounded-3xl border border-[var(--primary)]/10 p-5 sm:p-6 mb-8 shadow-[0_4px_10px_rgba(212,175,55,0.05)] flex items-center gap-6">
           <div className="relative w-20 h-20 shrink-0">
-            <svg className="w-20 h-20 transform -rotate-90">
+            <svg className="w-20 h-20 transform -rotate-90" viewBox="0 0 80 80">
               <circle cx="40" cy="40" r="36" fill="transparent" stroke="currentColor" strokeWidth="8" className="text-[var(--primary-light)]" />
-              <circle cx="40" cy="40" r="36" fill="transparent" stroke="currentColor" strokeWidth="8" strokeDasharray="226" strokeDashoffset="56.5" className="text-[var(--primary)] stroke-current" strokeLinecap="round" />
+              <circle cx="40" cy="40" r="36" fill="transparent" stroke="currentColor" strokeWidth="8" strokeDasharray="226.19" strokeDashoffset={dashOffset} className="text-[var(--primary)] stroke-current transition-all duration-1000 ease-out" strokeLinecap="round" />
             </svg>
             <div className="absolute inset-0 flex items-center justify-center font-bold text-lg text-[var(--text-primary)]">
               75%
@@ -83,7 +91,7 @@ export default function FitnessDashboardPage() {
         <h2 className="text-playfair text-xl font-bold text-[var(--text-primary)] mb-4">
           Health Metrics
         </h2>
-        <div className="grid grid-cols-2 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <MetricCard title="Steps" value="8,432" subtitle="Goal: 10,000" icon={Footprints} color="text-blue-500" bg="bg-blue-50" />
           <MetricCard title="Water" value="1.5 L" subtitle="Goal: 2.5 L" icon={Droplets} color="text-cyan-500" bg="bg-cyan-50" />
           <MetricCard title="Sleep" value="6h 45m" subtitle="Goal: 8h" icon={Moon} color="text-indigo-500" bg="bg-indigo-50" />
@@ -110,7 +118,7 @@ export default function FitnessDashboardPage() {
         <h2 className="text-playfair text-xl font-bold text-[var(--text-primary)] mb-4">
           Personalized Recommendations
         </h2>
-        <div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {recommended.map((rec, i) => (
             <ProductListCard
               key={i}

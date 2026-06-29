@@ -23,21 +23,21 @@ export default function CategoryIconCard({
     <Link
       href={href}
       className={cn(
-        "group w-[140px] shrink-0 p-4 bg-white rounded-3xl border border-[var(--border-light)] shadow-sm hover:shadow-md transition-default flex flex-col",
+        "group w-[110px] shrink-0 p-3 bg-[var(--bg-surface)] rounded-[20px] shadow-sm hover:shadow-md transition-default flex flex-col items-center text-center border border-[var(--border-light)]",
         className
       )}
     >
-      <div className="w-12 h-12 bg-[var(--text-primary)] rounded-2xl flex items-center justify-center mb-4 group-hover:scale-105 transition-default">
-        <Icon className="w-6 h-6 text-white" />
+      <div className="w-10 h-10 bg-[var(--text-primary)] rounded-xl flex items-center justify-center mb-3 group-hover:scale-105 transition-default">
+        <Icon className="w-5 h-5 text-white" />
       </div>
       
-      <div className="mt-auto">
-        <h4 className="text-[15px] font-bold text-[var(--text-primary)] truncate">
+      <div className="mt-auto w-full">
+        <h4 className="text-[13px] font-bold text-[var(--text-primary)] truncate">
           {title}
         </h4>
         
         {(rating || subtitle) && (
-          <div className="flex items-center gap-1 mt-1">
+          <div className="flex items-center justify-center gap-1 mt-1">
             {rating && (
               <div className="flex items-center gap-1 shrink-0">
                 <Star className="w-3 h-3 fill-red-500 text-red-500" />

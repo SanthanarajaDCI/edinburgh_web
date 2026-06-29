@@ -57,7 +57,7 @@ export default function InboxPage() {
       <div className="w-full md:w-[320px] lg:w-[360px] md:border-r border-[var(--border-light)] flex flex-col bg-white shrink-0">
         {/* Sidebar Header */}
         <div className="p-4 border-b border-[var(--border-light)]">
-          <h2 className="text-playfair text-2xl font-bold text-[var(--text-primary)] mb-3">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-3 tracking-tight">
             Inbox
           </h2>
 

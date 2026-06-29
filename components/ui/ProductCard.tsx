@@ -21,7 +21,7 @@ export default function ProductCard({
     <Link
       href={href}
       className={cn(
-        "group bg-white rounded-2xl overflow-hidden shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)] transition-default shrink-0",
+        "group bg-[var(--bg-surface)] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-default shrink-0 border border-[var(--border-light)]",
         "w-[140px] sm:w-[160px]",
         className
       )}

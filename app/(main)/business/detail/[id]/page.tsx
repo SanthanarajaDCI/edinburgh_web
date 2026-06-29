@@ -45,10 +45,10 @@ export default function BusinessDetailPage() {
         </div>
       </div>
 
-      <div className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto -mt-10 relative z-20">
+      <div className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto -mt-24 sm:-mt-28 relative z-20">
         {/* Business Info */}
         <div className="flex flex-col sm:flex-row sm:items-end gap-4 sm:gap-6">
-          <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-white bg-white shadow-md overflow-hidden shrink-0 relative">
+          <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-white bg-white shadow-xl overflow-hidden shrink-0 relative">
             <Image
               src={`https://picsum.photos/seed/${businessId}_logo/150/150`}
               alt="Business Logo"
@@ -56,17 +56,17 @@ export default function BusinessDetailPage() {
               className="object-cover"
             />
           </div>
-          <div className="flex-1 pb-2">
-            <h1 className="text-playfair text-2xl sm:text-3xl font-bold text-[var(--text-primary)] leading-tight">
+          <div className="flex-1 pb-4">
+            <h1 className="text-playfair text-3xl sm:text-4xl font-bold text-white leading-tight drop-shadow-md">
               The Royal Edinburgh Cafe
             </h1>
-            <p className="text-[var(--primary)] font-bold text-sm sm:text-base mt-1">
+            <p className="text-blue-200 font-bold text-sm sm:text-base mt-2 drop-shadow">
               Restaurant & Coffee Shop
             </p>
-            <div className="flex items-center gap-1.5 mt-2">
-              <Star className="w-5 h-5 fill-[var(--accent)] text-[var(--accent)]" />
-              <span className="font-bold text-[var(--text-primary)]">4.8</span>
-              <span className="text-[var(--text-secondary)] text-sm">(342 reviews)</span>
+            <div className="flex items-center gap-1.5 mt-2 text-white drop-shadow">
+              <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+              <span className="font-bold">4.8</span>
+              <span className="text-white/80 text-sm">(342 reviews)</span>
             </div>
           </div>
         </div>

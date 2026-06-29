@@ -120,7 +120,7 @@ export default function RestaurantsPage() {
         <h2 className="text-playfair text-xl font-bold text-[var(--text-primary)] mb-4">
           Top Restaurants
         </h2>
-        <div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {topRatedRestaurants.map((rest) => (
             <ProductListCard
               key={rest.id}

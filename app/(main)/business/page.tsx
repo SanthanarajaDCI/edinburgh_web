@@ -119,7 +119,7 @@ export default function BusinessDirectoryPage() {
         <h2 className="text-playfair text-xl font-bold text-[var(--text-primary)] mb-4">
           Top Rated
         </h2>
-        <div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {topRatedBusinesses.map((biz) => (
             <ProductListCard
               key={biz.id}

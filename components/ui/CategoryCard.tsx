@@ -20,7 +20,7 @@ export default function CategoryCard({
     <Link
       href={href}
       className={cn(
-        "group relative rounded-2xl overflow-hidden aspect-[3/4] block",
+        "group relative rounded-3xl overflow-hidden aspect-[3/4] block",
         "shadow-[var(--shadow-lg)] hover:shadow-[var(--shadow-xl)] transition-default",
         "hover:scale-[0.98] active:scale-95",
         className
@@ -44,7 +44,7 @@ export default function CategoryCard({
 
         {/* Texts */}
         <div>
-          <h3 className="text-playfair text-lg font-bold text-white leading-tight">
+          <h3 className="text-xl font-bold text-white leading-tight">
             {title}
           </h3>
           <p className="text-xs text-white/80 mt-1">{subtitle}</p>

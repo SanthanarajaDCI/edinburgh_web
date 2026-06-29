@@ -5,11 +5,13 @@ import Image from "next/image";
 import { useRouter, useParams } from "next/navigation";
 import { ArrowLeft, Star, Heart, Share2, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useUIStore } from "@/store/useUIStore";
 
 export default function MiniProgramDetailPage() {
   const router = useRouter();
   const params = useParams();
   const programId = params.id as string;
+  const showToast = useUIStore((state) => state.showToast);
   
   const [isFavorite, setIsFavorite] = useState(false);
   const [isLaunching, setIsLaunching] = useState(false);
@@ -18,7 +20,7 @@ export default function MiniProgramDetailPage() {
     setIsLaunching(true);
     setTimeout(() => {
       setIsLaunching(false);
-      alert(`Welcome to Awesome App ${programId}!`);
+      showToast(`Welcome to Awesome App ${programId}!`, "success");
     }, 2000);
   };
 

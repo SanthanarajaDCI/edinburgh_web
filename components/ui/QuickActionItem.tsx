@@ -23,8 +23,8 @@ export default function QuickActionItem({
         className
       )}
     >
-      <div className="w-14 h-14 rounded-2xl bg-white shadow-[var(--shadow-sm)] flex items-center justify-center group-hover:shadow-[var(--shadow-md)] group-hover:scale-105 transition-default border border-[var(--border-light)]">
-        <Icon className="w-6 h-6 text-[var(--primary)]" strokeWidth={1.5} />
+      <div className="w-16 h-16 rounded-3xl bg-white shadow-sm flex items-center justify-center group-hover:shadow-md group-hover:-translate-y-1 transition-default">
+        <Icon className="w-6 h-6 text-[var(--accent)]" strokeWidth={1.5} />
       </div>
       <span className="text-xs font-medium text-[var(--text-primary)] text-center leading-tight">
         {label}

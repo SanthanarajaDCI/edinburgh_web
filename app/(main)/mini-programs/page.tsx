@@ -52,6 +52,7 @@ export default function MiniProgramsDirectoryPage() {
             imageUrl="https://picsum.photos/seed/mini_weather/400/300"
             tag="Featured"
             href="/mini-programs"
+            priority={true}
           />
           <TrendingProductCard
             title="QR Scanner Plus"
@@ -84,7 +85,7 @@ export default function MiniProgramsDirectoryPage() {
           <h2 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)] mb-6">
             Popular Programs
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             <ProductListCard
               title="Expense Tracker"
               subtitle="Finance • 4.8 ★"

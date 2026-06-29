@@ -81,7 +81,7 @@ export default function InsuranceDetailPage() {
           <h2 className="text-playfair text-xl font-bold text-[var(--text-primary)] mb-4">
             Quote Comparison
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Basic Tier */}
             <div className="bg-white border border-[var(--border-light)] rounded-2xl p-4 sm:p-6">
               <h3 className="font-bold text-[var(--text-primary)] text-lg">Basic</h3>

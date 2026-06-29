@@ -25,7 +25,7 @@ export default function SectionHeader({
             <Icon className="w-4 h-4 text-[var(--primary)]" />
           </div>
         )}
-        <h2 className="text-playfair text-lg sm:text-xl font-bold text-[var(--text-primary)]">
+        <h2 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)] tracking-tight">
           {title}
         </h2>
       </div>

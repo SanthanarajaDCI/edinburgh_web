@@ -16,7 +16,7 @@ export default function FilterChips({
 }: FilterChipsProps) {
   return (
     <div className={cn("flex items-center gap-2 overflow-x-auto hide-scrollbar px-4 sm:px-6 lg:px-8", className)}>
-      <button className="flex items-center gap-2 shrink-0 h-10 px-4 rounded-full border border-[var(--primary-medium)] bg-white text-[var(--text-primary)] hover:bg-[var(--primary-light)] transition-default">
+      <button className="flex items-center gap-2 shrink-0 h-10 px-4 rounded-full shadow-sm bg-white text-[var(--text-primary)] hover:bg-[var(--primary-light)] transition-default">
         <SlidersHorizontal className="w-4 h-4" />
         <span className="text-sm font-bold">Filter</span>
       </button>
@@ -28,10 +28,10 @@ export default function FilterChips({
             key={filter}
             onClick={() => onSelect(filter)}
             className={cn(
-              "shrink-0 h-10 px-5 rounded-full text-sm font-bold border transition-default",
+              "shrink-0 h-10 px-5 rounded-full text-sm font-semibold transition-default",
               isSelected
-                ? "bg-[var(--primary)] text-white border-[var(--primary)]"
-                : "bg-white text-[var(--text-primary)] border-[var(--primary-medium)] hover:bg-[var(--primary-light)]"
+                ? "bg-[var(--primary)] text-white shadow-md"
+                : "bg-white text-[var(--text-primary)] shadow-sm hover:bg-[var(--primary-light)]"
             )}
           >
             {filter}

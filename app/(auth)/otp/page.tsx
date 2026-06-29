@@ -2,9 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import { Lock, X, Mail, KeyRound } from "lucide-react";
+import { useUIStore } from "@/store/useUIStore";
 
 export default function OtpWallPage() {
   const router = useRouter();
+  const showToast = useUIStore((state) => state.showToast);
 
   return (
     <div className="min-h-screen bg-[var(--background)] flex flex-col relative max-w-md mx-auto">
@@ -51,7 +53,7 @@ export default function OtpWallPage() {
             />
             <button 
               className="text-sm font-bold text-[var(--primary)] px-4 py-2 hover:bg-[var(--primary-light)] rounded-lg transition-colors"
-              onClick={() => alert("OTP Sent!")}
+              onClick={() => showToast("OTP Sent!", "success")}
             >
               Send OTP
             </button>

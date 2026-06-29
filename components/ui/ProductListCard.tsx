@@ -25,11 +25,11 @@ export default function ProductListCard({
     <Link
       href={href}
       className={cn(
-        "group block bg-white rounded-3xl border border-[var(--border-light)] overflow-hidden shadow-sm hover:shadow-md transition-default mb-6",
+        "group block bg-[var(--bg-surface)] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-default border border-[var(--border-light)]",
         className
       )}
     >
-      <div className="relative h-[200px] w-full overflow-hidden">
+      <div className="relative aspect-square w-full overflow-hidden">
         <Image
           src={imageUrl}
           alt={title}
@@ -38,25 +38,25 @@ export default function ProductListCard({
           sizes="(max-width: 1280px) 100vw, 1280px"
         />
         {badgeText && (
-          <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-2xl shadow-sm">
-            <span className="text-sm font-bold text-[var(--primary)]">
+          <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full shadow-sm">
+            <span className="text-[10px] font-bold text-[var(--primary)] uppercase tracking-wider">
               {badgeText}
             </span>
           </div>
         )}
       </div>
       
-      <div className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="p-4 flex flex-col gap-3">
         <div className="flex-1 min-w-0">
-          <h3 className="text-playfair text-xl font-bold text-[var(--text-primary)] truncate">
+          <h3 className="text-base font-bold text-[var(--text-primary)] truncate">
             {title}
           </h3>
-          <p className="text-sm text-[var(--text-secondary)] mt-1 truncate">
+          <p className="text-xs text-[var(--text-secondary)] mt-1 truncate">
             {subtitle}
           </p>
         </div>
         
-        <button className="px-6 py-3 bg-[var(--primary)] text-white text-sm font-bold rounded-xl hover:bg-[var(--primary)]/90 transition-default shrink-0 active:scale-95">
+        <button className="w-full py-2 bg-[var(--primary)] text-white text-xs font-bold rounded-full hover:bg-[var(--primary)]/90 transition-default active:scale-95">
           {actionText}
         </button>
       </div>
