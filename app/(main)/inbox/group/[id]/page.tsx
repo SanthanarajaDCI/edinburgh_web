@@ -1,0 +1,162 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import { useRouter, useParams } from "next/navigation";
+import { ArrowLeft, Phone, Video, MoreVertical, Plus, Mic, Image as ImageIcon, File, MapPin, User as UserIcon, Users, Pin } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+const messages = [
+  { sender: 'them', name: 'Sarah Jenkins', text: 'Hey team, did we finalize the design?', time: '10:00 AM', reactions: ['👍', '👀'] },
+  { sender: 'me', name: 'Me', text: 'Yes, I sent the link to the Figma file.', time: '10:05 AM', reactions: [] },
+  { sender: 'them', name: 'David Lee', text: '@Me Thanks, I will review it shortly.', time: '10:15 AM', reactions: ['❤️'] },
+];
+
+export default function GroupChatPage() {
+  const router = useRouter();
+  const params = useParams();
+  const groupId = params.id as string;
+  const [showAttachments, setShowAttachments] = useState(false);
+
+  return (
+    <div className="max-w-[1280px] mx-auto w-full h-[100dvh] bg-[var(--background)] flex flex-col relative overflow-hidden">
+      {/* App Bar */}
+      <div className="px-4 py-3 flex items-center justify-between bg-[var(--background)] border-b border-[var(--border-light)] shrink-0 z-10">
+        <div className="flex items-center gap-3">
+          <button onClick={() => router.back()} className="text-[var(--text-primary)]">
+            <ArrowLeft className="w-6 h-6" />
+          </button>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full relative overflow-hidden bg-[var(--primary-light)] flex items-center justify-center text-[var(--primary)] shrink-0">
+              <Users className="w-5 h-5" />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-bold text-[var(--text-primary)] text-sm">Design Team</span>
+              <span className="text-xs text-[var(--text-secondary)]">4 Members</span>
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center gap-2 text-[var(--text-primary)]">
+          <button onClick={() => router.push(`/inbox/call/${groupId}`)} className="p-2">
+            <Phone className="w-5 h-5" />
+          </button>
+          <button onClick={() => router.push(`/inbox/call/${groupId}?video=true`)} className="p-2">
+            <Video className="w-5 h-5" />
+          </button>
+          <button className="p-2">
+            <MoreVertical className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
+
+      {/* Pinned Message */}
+      <div className="bg-[var(--primary-light)] border-b border-[var(--border-light)] px-4 py-3 flex items-center gap-3 shrink-0">
+        <Pin className="w-5 h-5 text-[var(--primary)] shrink-0" />
+        <div className="flex flex-col min-w-0">
+          <span className="text-xs font-bold text-[var(--primary)]">Pinned Message</span>
+          <span className="text-sm text-[var(--text-primary)] truncate">Project deadline extended to Friday.</span>
+        </div>
+      </div>
+
+      {/* Messages */}
+      <div className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 flex flex-col gap-6 z-0">
+        {messages.map((msg, index) => {
+          const isMe = msg.sender === 'me';
+          return (
+            <div key={index} className={cn("flex w-full", isMe ? "justify-end" : "justify-start")}>
+              <div className="flex gap-2 max-w-[75%] items-start">
+                {!isMe && (
+                  <div className="w-8 h-8 rounded-full relative overflow-hidden shrink-0 bg-[var(--primary-light)] flex items-center justify-center text-[var(--primary)] text-sm font-bold">
+                    {msg.name.charAt(0)}
+                  </div>
+                )}
+                
+                <div className="flex flex-col relative">
+                  {!isMe && (
+                    <span className="text-xs font-bold text-[var(--text-primary)] mb-1 ml-1">{msg.name}</span>
+                  )}
+                  
+                  <div className={cn(
+                    "p-3 shadow-sm flex flex-col relative",
+                    isMe 
+                      ? "bg-[var(--primary)] rounded-2xl rounded-tr-none" 
+                      : "bg-white border border-[var(--border-light)] rounded-2xl rounded-tl-none"
+                  )}>
+                    <p className={cn("text-base leading-relaxed whitespace-pre-wrap", isMe ? "text-white" : "text-[var(--text-primary)]")}>
+                      {/* Highlight @mentions naively for demo */}
+                      {msg.text.split(' ').map((word, i) => (
+                        <span key={i} className={word.startsWith('@') ? cn("font-bold", isMe ? "text-white" : "text-[var(--primary)]") : ""}>
+                          {word}{" "}
+                        </span>
+                      ))}
+                    </p>
+                    <span className={cn("text-[10px] mt-1 self-end", isMe ? "text-white/70" : "text-[var(--text-secondary)]")}>
+                      {msg.time}
+                    </span>
+                    
+                    {/* Reactions */}
+                    {msg.reactions.length > 0 && (
+                      <div className={cn(
+                        "absolute -bottom-3 flex items-center gap-1 bg-white border border-[var(--border-light)] rounded-full px-2 py-0.5 shadow-sm text-xs",
+                        isMe ? "left-3" : "right-3"
+                      )}>
+                        {msg.reactions.join('')}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Attachments Overlay */}
+      {showAttachments && (
+        <div className="absolute bottom-[72px] left-0 right-0 bg-white border-t border-[var(--border-light)] rounded-t-2xl shadow-[0_-10px_30px_rgba(0,0,0,0.1)] p-6 z-20 transition-all duration-300">
+          <div className="grid grid-cols-4 gap-6 max-w-sm mx-auto">
+            <AttachmentOption icon={ImageIcon} label="Media" color="bg-purple-100 text-purple-600" />
+            <AttachmentOption icon={File} label="File" color="bg-blue-100 text-blue-600" />
+            <AttachmentOption icon={MapPin} label="Location" color="bg-green-100 text-green-600" />
+            <AttachmentOption icon={UserIcon} label="Contact" color="bg-orange-100 text-orange-600" />
+          </div>
+        </div>
+      )}
+
+      {/* Input Area */}
+      <div className="px-4 py-3 bg-white border-t border-[var(--border-light)] shadow-[0_-5px_15px_rgba(0,0,0,0.02)] shrink-0 z-30 pb-safe-bottom">
+        <div className="flex items-center gap-3">
+          <button 
+            onClick={() => setShowAttachments(!showAttachments)}
+            className={cn("w-10 h-10 rounded-full flex items-center justify-center transition-colors shrink-0", showAttachments ? "bg-[var(--primary)] text-white" : "bg-gray-100 text-[var(--primary)]")}
+          >
+            <Plus className={cn("w-6 h-6 transition-transform", showAttachments && "rotate-45")} />
+          </button>
+          
+          <div className="flex-1 bg-gray-100 rounded-3xl px-4 py-2 flex items-center">
+            <input 
+              type="text"
+              placeholder="Message or @mention..."
+              className="flex-1 bg-transparent border-none outline-none text-sm text-[var(--text-primary)]"
+            />
+          </div>
+          
+          <button className="w-10 h-10 rounded-full bg-[var(--primary)] flex items-center justify-center text-white shrink-0">
+            <Mic className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function AttachmentOption({ icon: Icon, label, color }: { icon: any, label: string, color: string }) {
+  return (
+    <button className="flex flex-col items-center gap-2 group">
+      <div className={cn("w-14 h-14 rounded-full flex items-center justify-center transition-transform group-active:scale-95", color)}>
+        <Icon className="w-6 h-6" />
+      </div>
+      <span className="text-xs font-bold text-[var(--text-primary)]">{label}</span>
+    </button>
+  );
+}
